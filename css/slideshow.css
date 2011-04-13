@@ -1,0 +1,17 @@
+div.loading {
+	
+}
+
+div.dimmer {
+    position: relative;
+    background-color: #000;
+    width: 100%;
+    color: #000;
+}
+a.nextbtn,
+a.prevbtn {
+    background-color: red;
+    color: #fff;
+    padding: 5px;
+    font-family: arial;
+}

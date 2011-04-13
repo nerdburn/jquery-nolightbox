@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>jQuery Slideshow</title>   
+<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+<script language="javascript" type="text/javascript" src="js/jquery.nolightbox.json.js"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+ 
+    photos = [
+        {location: "images/gallery_01.jpg"},
+        {location: "images/gallery_02.jpg"},
+        {location: "images/gallery_03.jpg"},
+        {location: "images/gallery_04.jpg"},
+        {location: "images/gallery_05.jpg"},
+        {location: "images/gallery_06.jpg"},
+        {location: "images/gallery_07.jpg"},
+        {location: "images/gallery_08.jpg"},
+        {location: "images/gallery_09.jpg"},
+        {location: "images/gallery_10.jpg"},
+    ]
+    $().nolightbox({json: photos});
+});
+</script>
+<style type="text/css">
+body { background-image: url('images/nick_listings_detail.jpg'); } 
+</style>
+</head>
+<body>
+    <a href="#" class="nolightbox">launch the slideshow</a>
+</body>
+</html>

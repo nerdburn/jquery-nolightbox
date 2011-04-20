@@ -1,9 +1,14 @@
-/*
-*   Â© 2009 Shawn Adrian
-*   No Lightbox - jQuery Slideshow Plugin
-*  www.nerdburn.com / shawn@nerdburn.com
-*   Version 1.0
-*/
+/*!
+ * No lightbox -jQuery Slideshow Plugin v1.1
+ * www.nerdburn.com
+ *
+ * Copyright 2011, Shawn Adrian
+ *
+ * TODO: Insert licence(s)
+ *
+ * @author <a href="mailto:shawn@nerdburn.com">Shawn Adrian</a>
+ * @author <a href="mailto:alex.arnell+nlb@gmail.com">Alex Arnell</a>
+ */
 
 (function($) {
 
@@ -98,15 +103,21 @@
   // a simple function to set up / hide html entities on the page and return them
   function setupHtml() {
     // create html for the gallery, etc.
-    var html = '<div class="nolightbox"></div><div class="dimmer"><p class="loading">Loading...</p></div>';
+    var html = [];
+    html.push( '<div class="nolightbox"></div>' );
+    html.push( '<div class="dimmer">' );
+    html.push( '<div class="closebutton" title="Close"></div>' );
+    html.push( '<p class="loading">Loading...</p>' );
+    html.push('</div>' );
 
     // add the html to the body
-    $("body").append(html);
+    $("body").append(html.join(''));
 
     // set up vars to simplify code
     var div = $("div.nolightbox");
     var dimmer = $("div.dimmer");
     var loading = $("div.dimmer p.loading");
+    var close = $('div.dimmer div.closebutton');
 
       // hide until launched
     div.hide();
@@ -116,7 +127,8 @@
     var html = {
       loading: loading,
       div: div,
-      dimmer: dimmer
+      dimmer: dimmer,
+      close: close
     };
 
     // return the html elements
@@ -175,6 +187,17 @@
         color: "#fff",
         zIndex: 99
       }).animate({opacity: 0.999},$.fn.nolightbox.defaults.speed).height($(document).height());
+
+      // style the close buttom
+      html.close.css({
+        position: "absolute",
+        top: "0px",
+        right: "0px",
+        width: "30px",
+        height: "30px",
+        cursor: "pointer",
+        background: "url(images/close.png)"
+      });
 
       // style the gallery
       html.div.css({
@@ -246,9 +269,11 @@
           $.fn.nolightbox.size_and_position_pics(pics);
         });
 
+        // bind event listeners to close the slideshow
         $(window).keyup(function(e) {
           if (e.which == 27) { $.fn.nolightbox.close(); }   // esc
         });
+        html.close.click($.fn.nolightbox.close);
 
         html.div.show();
 

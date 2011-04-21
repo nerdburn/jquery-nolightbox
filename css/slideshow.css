@@ -1,17 +1,14 @@
-div.loading {
-	
+.nolightbox-loading-image {
+  background: url('../images/loader.gif') no-repeat center bottom;
+  height: 55px; /* provide some padding for the text to appear above the spinner */
 }
 
-div.dimmer {
-    position: relative;
-    background-color: #000;
-    width: 100%;
-    color: #000;
+.nolightbox-loading-text {
+  /* customize the look of the text */
 }
-a.nextbtn,
-a.prevbtn {
-    background-color: red;
-    color: #fff;
-    padding: 5px;
-    font-family: arial;
+
+.nolightbox-closebutton {
+  width: 30px;
+  height: 30px;
+  background: url('../images/close.png');
 }

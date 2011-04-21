@@ -105,19 +105,19 @@
     // create html for the gallery, etc.
     var html = [];
     html.push( '<div class="nolightbox"></div>' );
-    html.push( '<div class="dimmer">' );
-    html.push( '<div class="closebutton" title="Close"></div>' );
-    html.push( '<p class="loading">Loading...</p>' );
+    html.push( '<div class="nolightbox-dimmer">' );
+    html.push( '<div class="nolightbox-closebutton" title="Close"></div>' );
+    html.push( '<div class="nolightbox-loading"><div class="nolightbox-loading-image"><span class="nolightbox-loading-text">Loading...</span></div></div>' );
     html.push('</div>' );
 
     // add the html to the body
-    $("body").append(html.join(''));
+    var $html = $(html.join('')).appendTo("body");
 
     // set up vars to simplify code
-    var div = $("div.nolightbox");
-    var dimmer = $("div.dimmer");
-    var loading = $("div.dimmer p.loading");
-    var close = $('div.dimmer div.closebutton');
+    var div = $($html.get(0));
+    var dimmer = $($html.get(1));
+    var loading = $(".nolightbox-loading", dimmer);
+    var close = $('.nolightbox-closebutton', dimmer);
 
       // hide until launched
     div.hide();
@@ -173,8 +173,10 @@
 
       // style the loader
       html.loading.css({
+        position: "absolute",
         textAlign: "center",
-        top: "50%"
+        top: "75px",
+        left: "50%"
       });
 
       // style the dimmer
@@ -193,10 +195,7 @@
         position: "absolute",
         top: "0px",
         right: "0px",
-        width: "30px",
-        height: "30px",
         cursor: "pointer",
-        background: "url(images/close.png)"
       });
 
       // style the gallery

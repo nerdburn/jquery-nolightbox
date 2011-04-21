@@ -230,7 +230,7 @@
           return ldf.promise();
         });
 
-        var first = ldfs.splice(0, $.fn.nolightbox.defaults || 3);
+        var first = ldfs.splice(0, $.fn.nolightbox.defaults.showAfter || 3);
         // once the first 4 images are loaded resolve
         $.when.apply(this, first).then(function() {
           // arguments will be the first 4 loaded images

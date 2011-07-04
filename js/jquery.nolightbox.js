@@ -89,7 +89,7 @@
 
   function placePicLeft(pic) {
     var $pic = pic.jquery ? pic : $(pic),
-        scale_multiplier = final_height / $pic.data("nolightbox.height"),
+        scale_multiplier = final_height / ($pic.data("nolightbox.height") || final_height),
         new_width = Math.round($pic.data("nolightbox.width") * scale_multiplier);
     if (!isNaN(new_width)) {
       $pic.height(final_height).width(new_width);
@@ -224,21 +224,30 @@
       var finished = 0, total = images.length;
       var df = $.Deferred(function( dfd ){
 
-        var ldfs = $.map(images, function(image) {
-          var img_tag = $("<img/>")
-          img_tag.attr('src', image.location);
-          if(image.caption) { attr('alt', image.caption); }
-          img_tag.hide();
-          html.div.append(img_tag);
+        var ldfs = $.map(images, function(image, i) {
+          // create a placeholder image
+          var img_tag = new Image();
+
+          // custom deferred to track onloads
           var ldf = $.Deferred(function(d) {
-            img_tag.load(function() {
-              // height and width are known now, store a hard reference
-              $.data(this, "nolightbox.height", this.height);
-              $.data(this, "nolightbox.width", this.width);
-              d.resolve(img_tag);
-            });
-          });
-          return ldf.promise();
+            img_tag.onload = function() {
+              $(this).hide();
+              d.resolve(this);
+            };
+          }).promise();
+
+          // append an alt if a caption is provided
+          if(image.caption) { img_tag.alt = image.caption; }
+
+          html.div.append(img_tag); // append the node to DOM
+          img_tag.src = image.location; // attach src last to ensure better X-browser compat
+
+          // store this data now since we have it right away and this is the most
+          // X-browser compatable method to obtain the widths and heights
+          $.data(img_tag, "nolightbox.height", img_tag.height);
+          $.data(img_tag, "nolightbox.width", img_tag.width);
+
+          return ldf;
         });
 
         var first = ldfs.splice(0, $.fn.nolightbox.defaults.showAfter || 3);

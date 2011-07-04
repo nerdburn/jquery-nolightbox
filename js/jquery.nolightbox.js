@@ -1,15 +1,14 @@
 /*!
- * No lightbox -jQuery Slideshow Plugin v1.1
- * www.nerdburn.com
- *
- * Copyright 2011, Shawn Adrian
- *
- * TODO: Insert licence(s)
- *
- * @author <a href="mailto:shawn@nerdburn.com">Shawn Adrian</a>
- * @author <a href="mailto:alex.arnell+nlb@gmail.com">Alex Arnell</a>
- */
-
+* No lightbox -jQuery Slideshow Plugin v1.1
+* www.nerdburn.com
+*
+* Copyright 2011, Shawn Adrian
+*
+* TODO: Insert licence(s)
+*
+* @author <a href="mailto:shawn@nerdburn.com">Shawn Adrian</a>
+* @author <a href="mailto:alex.arnell+nlb@gmail.com">Alex Arnell</a>
+*/
 (function($) {
 
   // establish the actual plugin
@@ -63,6 +62,7 @@
     var min_height = 100000; // height of smallest image in set
     $.each(pics, function() {
       var $pic = this.jquery ? this : $(this);
+
       // fetch height from the actual img tag
       min_height = Math.min(min_height, $pic.data("nolightbox.height") || 100000);
     });
@@ -71,7 +71,6 @@
     var minimum_acceptable_height = 250;
     // final_height is the height that we will set for images to
     final_height = Math.max(uniform_image_height, minimum_acceptable_height);
-
 
     accumulated_offset = $.fn.nolightbox.defaults.leftmargin;
     $.each(pics, function() { placePicLeft(this); });
@@ -264,7 +263,6 @@
 
       // once all the images are loaded remove the loading text
       df = $.when(df).then(function(first, remaining) {
-
         html.loading.hide();
 
         // set up a var to house the pics

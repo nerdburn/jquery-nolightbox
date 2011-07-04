@@ -148,16 +148,28 @@
       // keep a copy of all the previous valus on body that
       // we will tweak just a little later on
       var $body = $("body"), bodyPrevCss = {
-        overflow: $body.css("overflow"),
-        margin: $body.css("margin"),
-        padding: $body.css("padding")
+        'overflow': $body.css("overflow"),
+        'margin-top': $body.css("margin-top"),
+        'margin-right': $body.css("margin-right"),
+        'margin-bottom': $body.css("margin-bottom"),
+        'margin-left': $body.css("margin-left"),
+        'padding-top': $body.css("padding-top"),
+        'padding-right': $body.css("padding-right"),
+        'padding-bottom': $body.css("padding-bottom"),
+        'padding-left': $body.css("padding-left")
       };
 
       // style the body, show the slideshow html
       $body.css({
-        overflow: "hidden",
-        margin: 0,
-        padding: 0
+        'overflow': "hidden",
+        'margin-top': 0,
+        'margin-right': 0,
+        'margin-bottom': 0,
+        'margin-left': 0,
+        'padding-top': 0,
+        'padding-right': 0,
+        'padding-bottom': 0,
+        'padding-left': 0
       });
 
       // use a closure to lock in the value of 'options'
@@ -173,37 +185,37 @@
 
       // style the loader
       html.loading.css({
-        position: "absolute",
-        textAlign: "center",
-        top: "75px",
-        left: "50%"
+        'position': "absolute",
+        'text-align': "center",
+        'top': "75px",
+        'left': "50%"
       });
 
       // style the dimmer
       html.dimmer.css({
-        position: "absolute",
-        top: 0,
-        left: 0,
-        backgroundColor: "#000",
-        width: "100%",
-        color: "#fff",
-        zIndex: 99
-      }).animate({opacity: 0.999},$.fn.nolightbox.defaults.speed).height($(document).height());
+        'position': "absolute",
+        'top': 0,
+        'left': 0,
+        'background-color': "#000",
+        'width': "100%",
+        'color': "#fff",
+        'z-index': 99
+      }).animate({opacity: 0.999}, $.fn.nolightbox.defaults.speed).height($(document).height());
 
       // style the close buttom
       html.close.css({
-        position: "absolute",
-        top: "0px",
-        right: "0px",
-        cursor: "pointer",
+        'position': "absolute",
+        'top': 0,
+        'right': 0,
+        'cursor': "pointer"
       });
 
       // style the gallery
       html.div.css({
-        position: "absolute",
-        top: 0,
-        left: 0,
-        zIndex: 100
+        'position': "absolute",
+        'top': 0,
+        'left': 0,
+        'z-index': 100
       });
 
       html.dimmer.show();

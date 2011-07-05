@@ -230,7 +230,12 @@
           // custom deferred to track onloads
           var ldf = $.Deferred(function(d) {
             img_tag.onload = function() {
-              $(this).hide();
+
+              // store this data now since we have it right away and this is the most
+              // X-browser compatable method to obtain the widths and heights
+              $.data(img_tag, "nolightbox.height", this.height);
+              $.data(img_tag, "nolightbox.width", this.width);
+
               d.resolve(this);
             };
           }).promise();
@@ -241,10 +246,7 @@
           html.div.append(img_tag); // append the node to DOM
           img_tag.src = image.location; // attach src last to ensure better X-browser compat
 
-          // store this data now since we have it right away and this is the most
-          // X-browser compatable method to obtain the widths and heights
-          $.data(img_tag, "nolightbox.height", img_tag.height);
-          $.data(img_tag, "nolightbox.width", img_tag.width);
+          $(img_tag).hide();
 
           return ldf;
         });

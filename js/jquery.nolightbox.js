@@ -221,9 +221,16 @@
 
       // preload all the images...
       var finished = 0, total = images.length;
+      var ne = function(n) {
+        return !$.isEmptyObject(n) && 
+          $.type(n.location) === "string" &&
+          $.trim(n.location).length > 0;
+      }
+      var grepped = $.grep(images, ne);
+
       var df = $.Deferred(function( dfd ){
 
-        var ldfs = $.map(images, function(image, i) {
+        var ldfs = $.map(grepped, ne), function(image, i) {
           // create a placeholder image
           var img_tag = new Image();
 

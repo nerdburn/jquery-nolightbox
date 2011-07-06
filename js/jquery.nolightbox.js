@@ -230,7 +230,7 @@
 
       var df = $.Deferred(function( dfd ){
 
-        var ldfs = $.map(grepped, ne), function(image, i) {
+        var ldfs = $.map(grepped, function(image, i) {
           // create a placeholder image
           var img_tag = new Image();
 
